@@ -17,19 +17,17 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+    - uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 16.x
         cache: 'npm'
     - run: npm install
     - run: npm run data:import
     - run: npm run data:destroy
+    - uses: behe/heroku-build@v1.1
+      with:
+        app-name: mern-shop-benms
+        api-key: ${{ secrets.HEROKU_API_KEY }}
 
