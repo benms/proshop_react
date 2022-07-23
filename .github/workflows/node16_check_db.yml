@@ -30,17 +30,13 @@ jobs:
     - run: npm install
     - run: npm run data:import
       env:
-        MONGO_INITDB_ROOT_USERNAME: root
-        MONGO_INITDB_ROOT_PASSWORD: root
         NODE_ENV: development
         PORT: 5000
         JWT_SECRET: abc123
-        MONGO_URI: mongodb+srv://root:root@mongodb/test_db?retryWrites=true&w=majority
+        MONGO_URI: mongodb://root:root@mongodb/test_db
     - run: npm run data:destroy
       env:
-        MONGO_INITDB_ROOT_USERNAME: root
-        MONGO_INITDB_ROOT_PASSWORD: root
         NODE_ENV: development
         PORT: 5000
         JWT_SECRET: abc123
-        MONGO_URI: mongodb+srv://root:root@mongodb/test_db?retryWrites=true&w=majority
+        MONGO_URI: mongodb://root:root@mongodb/test_db
